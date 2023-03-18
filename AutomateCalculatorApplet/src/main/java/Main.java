@@ -22,7 +22,7 @@ public class Main {
         final Checkbox radioBtn1 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("radioBtn1");
         final Checkbox radioBtn2 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("radioBtn2");
         final Checkbox checkbox1 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("checkBox1");
-        final Checkbox checkbox2 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("checkBox1");
+        final Checkbox checkbox2 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("checkBox2");
         final Choice dropDown = (Choice) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("randNums");
 
         Random random = new Random();
@@ -58,7 +58,7 @@ public class Main {
 
             switch (choice) {
                 case 0:
-                    GuiActionRunner.execute(() -> checkbox1);
+                    GuiActionRunner.execute(() -> checkbox1.setState(true));
                     GuiActionRunner.execute(() -> checkbox2.setState(false));
                     break;
                 case 1:
