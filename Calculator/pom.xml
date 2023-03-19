@@ -47,6 +47,7 @@
             <version>${assertj-swing-junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-swing -->
         <dependency>
             <groupId>org.assertj</groupId>
@@ -54,11 +55,24 @@
             <version>${assertj-swing.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- custom jar -->
         <dependency>
             <groupId>intelliagent</groupId>
             <artifactId>Calculator</artifactId>
             <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.13.2</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

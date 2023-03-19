@@ -1,5 +1,6 @@
 import org.assertj.swing.applet.AppletViewer;
 import org.assertj.swing.core.BasicComponentFinder;
+import org.assertj.swing.core.ComponentFinder;
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.launcher.AppletLauncher;
@@ -13,17 +14,18 @@ public class Main {
 
         AppletViewer viewer = AppletLauncher.applet(Calculator.class).start();
         FrameFixture window = new FrameFixture(viewer);
+        ComponentFinder componentFinder = BasicComponentFinder.finderWithCurrentAwtHierarchy();
         window.show();
 
-        final JTextField numOneField = (JTextField) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("numOne");
-        final JTextField numTwoField = (JTextField) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("numTwo");
-        final JTextField result = (JTextField) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("result");
-        final JButton addBtn = (JButton) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("addBtn");
-        final Checkbox radioBtn1 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("radioBtn1");
-        final Checkbox radioBtn2 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("radioBtn2");
-        final Checkbox checkbox1 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("checkBox1");
-        final Checkbox checkbox2 = (Checkbox) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("checkBox2");
-        final Choice dropDown = (Choice) BasicComponentFinder.finderWithCurrentAwtHierarchy().findByName("randNums");
+        final JTextField numOneField = (JTextField) componentFinder.findByName("numOne");
+        final JTextField numTwoField = (JTextField) componentFinder.findByName("numTwo");
+        final JTextField result = (JTextField) componentFinder.findByName("result");
+        final JButton addBtn = (JButton) componentFinder.findByName("addBtn");
+        final Checkbox radioBtn1 = (Checkbox) componentFinder.findByName("radioBtn1");
+        final Checkbox radioBtn2 = (Checkbox) componentFinder.findByName("radioBtn2");
+        final Checkbox checkbox1 = (Checkbox) componentFinder.findByName("checkBox1");
+        final Checkbox checkbox2 = (Checkbox) componentFinder.findByName("checkBox2");
+        final Choice dropDown = (Choice) componentFinder.findByName("randNums");
 
         Random random = new Random();
         int choice = 0;
