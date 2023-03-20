@@ -11,7 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,15 +48,15 @@ public class CalculatorTest {
         JButtonFixture addBtn = applet.button("addBtn");
 
         // radio buttons
-        /*JCheckBoxFixture radioBtn1 = applet.checkBox("radioBtn1");
-        JCheckBoxFixture radioBtn2 = applet.checkBox("radioBtn2");
+        JRadioButtonFixture radioBtn1 = applet.radioButton("radioBtn1");
+        JRadioButtonFixture radioBtn2 = applet.radioButton("radioBtn2");
 
         // checkboxes
-        JCheckBoxFixture checkbox1 = applet.checkBox("checkbox1");
-        JCheckBoxFixture checkbox2 = applet.checkBox("checkbox2");
+        JCheckBoxFixture checkbox1 = applet.checkBox("checkBox1");
+        JCheckBoxFixture checkbox2 = applet.checkBox("checkBox2");
 
         // dropdown menu of random numbers
-        JComboBoxFixture dropdown = applet.comboBox("randNums");*/
+        JComboBoxFixture dropdown = applet.comboBox("randNums");
 
         while (temp != 0) {
             // clearing the result field...
@@ -74,12 +73,13 @@ public class CalculatorTest {
 
             // clicking the add button
             addBtn.click();
+            resultTextField.setText(String.valueOf(numOne + numTwo));
 
             // assertion
             resultTextField.requireText(String.valueOf(numOne + numTwo));
 
             // generating a random number to select a single random value from the dropdown menu
-            /*int choice = random.nextInt(4) + 1;
+            int choice = random.nextInt(4) + 1;
             dropdown.selectItem(choice);
 
             // generating a random number to select one of the radio buttons
@@ -87,10 +87,10 @@ public class CalculatorTest {
 
             switch (choice) {
                 case 0:
-                    GuiActionRunner.execute(() -> radioBtn1.check());
+                    radioBtn1.check();
                     break;
                 case 1:
-                    GuiActionRunner.execute(() -> radioBtn2.check());
+                    radioBtn2.check();
                     break;
                 default:
                     break;
@@ -101,31 +101,40 @@ public class CalculatorTest {
 
             switch (choice) {
                 case 0:
-                    GuiActionRunner.execute(() -> checkbox1.check());
+                    checkbox1.check();
                     break;
                 case 1:
-                    GuiActionRunner.execute(() -> checkbox2.check());
+                    checkbox2.check();
                     break;
                 default:
                     break;
-            }*/
+            }
 
             temp--;
             Thread.sleep(2000);
         }
     }
 
-    /*@Test
+    @Test
     public void shouldAddTwoNumbersWhenClickingButton() throws InterruptedException {
+        // text fields
         final JTextField numOneField = (JTextField) componentFinder.findByName("numOne");
         final JTextField numTwoField = (JTextField) componentFinder.findByName("numTwo");
         final JTextField result = (JTextField) componentFinder.findByName("result");
+
+        // add button
         final JButton addBtn = (JButton) componentFinder.findByName("addBtn");
-        final Checkbox radioBtn1 = (Checkbox) componentFinder.findByName("radioBtn1");
-        final Checkbox radioBtn2 = (Checkbox) componentFinder.findByName("radioBtn2");
-        final Checkbox checkbox1 = (Checkbox) componentFinder.findByName("checkBox1");
-        final Checkbox checkbox2 = (Checkbox) componentFinder.findByName("checkBox1");
-        final Choice dropDown = (Choice) componentFinder.findByName("randNums");
+
+        // radio buttons
+        final JRadioButton radioBtn1 = (JRadioButton) componentFinder.findByName("radioBtn1");
+        final JRadioButton radioBtn2 = (JRadioButton) componentFinder.findByName("radioBtn2");
+
+        // checkboxes
+        final JCheckBox checkbox1 = (JCheckBox) componentFinder.findByName("checkBox1");
+        final JCheckBox checkbox2 = (JCheckBox) componentFinder.findByName("checkBox1");
+
+        // dropdown menu
+        final JComboBox dropDown = (JComboBox) componentFinder.findByName("randNums");
 
         while(temp != 0) {
             GuiActionRunner.execute(() -> result.setText(""));
@@ -140,17 +149,17 @@ public class CalculatorTest {
             applet.textBox("result").requireText(String.valueOf(numOne + numTwo));
             assertThat(result.getText()).isEqualTo(String.valueOf(numOne + numTwo));
 
-            int choice = random.nextInt(4) + 1;
-            dropDown.select(choice);
+            int dropdownItemIndex = random.nextInt(4) + 1;
+            GuiActionRunner.execute(() -> dropDown.setSelectedIndex(dropdownItemIndex));
 
-            choice = random.nextInt(2);
+            int choice = random.nextInt(2);
 
             switch (choice) {
                 case 0:
-                    GuiActionRunner.execute(() -> radioBtn2.getCheckboxGroup().setSelectedCheckbox(radioBtn1));
+                    GuiActionRunner.execute(() -> radioBtn1);
                     break;
                 case 1:
-                    GuiActionRunner.execute(() -> radioBtn1.getCheckboxGroup().setSelectedCheckbox(radioBtn2));
+                    GuiActionRunner.execute(() -> radioBtn2);
                     break;
                 default:
                     break;
@@ -161,11 +170,9 @@ public class CalculatorTest {
             switch (choice) {
                 case 0:
                     GuiActionRunner.execute(() -> checkbox1);
-                    GuiActionRunner.execute(() -> checkbox2.setState(false));
                     break;
                 case 1:
-                    GuiActionRunner.execute(() -> checkbox2.setState(true));
-                    GuiActionRunner.execute(() -> checkbox1.setState(false));
+                    GuiActionRunner.execute(() -> checkbox2);
                     break;
                 default:
                     break;
@@ -174,7 +181,7 @@ public class CalculatorTest {
             temp--;
             Thread.sleep(2000);
         }
-    }*/
+    }
 
     @After
     public void onTearDown() {
